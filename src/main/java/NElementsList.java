@@ -1,34 +1,23 @@
-
-
-import java.io.IOException;
 import java.util.*;
 
 public class NElementsList {
 
-    public static void main (String[] args) throws IOException {
+    public static void main (String[] args) {
         List<User> nElementsList = new ArrayList<>();
         Scanner s = new Scanner(System.in);
-        int i = 1, j = 1;
 
-        System.out.println("Введите общее количество элементов списка 'N'");
+        System.out.println("Input quality of list elements 'N'");
         int n = s.nextInt();
-        Integer[] ageArray = new Integer[n/2];
-        String[] nameArray = new String[n/2];
 
-        while (i < n) {
-            System.out.println("Введите параметры "+j+"-го пользователя");
-            System.out.println("Введите Имя пользователя");
-            nameArray[j-1] = s.next();
-            System.out.println("Введите Возраст пользователя");
-            ageArray[j-1] = s.nextInt();
-            i+=2;
-            j++;
+        for (int i = 0; i < n; i+=2) {
+            System.out.println("Input "+(i+2)/2+" user params");
+            System.out.println("Input user name");
+            String name = s.next();
+            System.out.println("Input user age");
+            int age = s.nextInt();
+            nElementsList.add(new User(name, age));
         }
         s.close();
-
-        Collections.addAll(nElementsList);
-        System.out.println("Весь список: "+nElementsList);
+        System.out.println("Users list:\n"+nElementsList);
     }
-
-
 }
