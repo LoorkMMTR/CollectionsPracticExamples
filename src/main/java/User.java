@@ -1,7 +1,4 @@
-import java.util.Comparator;
-
 public class User {
-    public static Comparator<? super User> getAge;
     private String name;
     private int age;
 
