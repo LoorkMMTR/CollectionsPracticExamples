@@ -1,27 +1,27 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import org.hamcrest.Description;
+import org.hamcrest.TypeSafeDiagnosingMatcher;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Matcher {
-    public Matcher(List<String> strList) {
-    List<String> sortList = strList.stream()
-            .sorted()
-            .collect(Collectors.toList());
-        if (sortList.equals(strList)) { System.out.println("List "+strList+" is sorted"); }
-        else { System.out.println("List "+strList+" is not sorted"); }
+public class Matcher extends TypeSafeDiagnosingMatcher<List<String>> {
+
+    public void describeTo(Description description) {
+        description.appendText("List should be sorted");
     }
-
-
-    public Matcher(String[] strArr) {
-        List<String> strList = new ArrayList<>();
-        Collections.addAll(strList, strArr);
+    @Override
+    protected boolean matchesSafely(List<String> strList, Description mismatchDescription) {
         List<String> sortList = strList.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        if (sortList.equals(strList)) { System.out.println("Array "+strList+" is sorted"); }
-        else { System.out.println("Array "+strList+" is not sorted"); }
+
+        mismatchDescription.appendText("was ")
+                .appendValue(strList)
+                .appendText(", isn't sorted list");
+        return (sortList.equals(strList));
+    }
+
+    public static Matcher isSorted() {
+        return new Matcher();
     }
 }
+

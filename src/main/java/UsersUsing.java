@@ -1,4 +1,5 @@
-import java.lang.reflect.Array;
+import org.testng.annotations.BeforeClass;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,16 +25,5 @@ public class UsersUsing {
         kidsList.add(UserKidOrOld.kid());
         kidsList.add(UserKidOrOld.old());
         System.out.println(kidsList);
-
-
-        String[] strArr = {"Вася", "Яна", "Женя", "Петя", "Аня"};
-        String[] sortArr = {"Аня", "Вася", "Женя", "Петя", "Яна"};
-        new Matcher(strArr);
-        new Matcher(sortArr);
-
-        List<String> strList = Arrays.asList("Вася", "Яна", "Женя", "Петя", "Аня");
-        List<String> sortList = Arrays.asList("Аня", "Вася", "Женя", "Петя", "Яна");
-        new Matcher(strList);
-        new Matcher(sortList);
     }
 }
